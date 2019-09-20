@@ -9,7 +9,7 @@ async function getScreenshot(url, type = 'jpeg', quality = 80) {
   });
 
   const page = await browser.newPage();
-  await page.goto(url);
+  await page.goto(url, { waitUntil: 'networkidle0' });
   const file = await page.screenshot({ type, quality });
   await browser.close();
   return file;
