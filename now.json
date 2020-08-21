@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "kwis-screen",
   "builds": [
     {
       "src": "index.js",
