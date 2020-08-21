@@ -5,13 +5,10 @@ module.exports = async (req, res) => {
   // For CORS
   if (req.method === 'OPTIONS') return res.json('ok');
 
-  const { pathname = '/', query = {} } = parse(req.url || '', true);
-  const { type = 'jpeg' } = query; // png or jpeg
+  const { query = {} } = parse(req.url || '', true);
+  const { type = 'jpeg', path = '/' } = query; // png or jpeg
 
-  let url = pathname.slice(1);
-
-  if (!url.startsWith('http')) url = `https://${url}`; // add protocol if missing
-
+  const url = `https://kwis.app${path}`; // add protocol if missing
   const file = await getScreenshot(url, type);
 
   res.statusCode = 200;
